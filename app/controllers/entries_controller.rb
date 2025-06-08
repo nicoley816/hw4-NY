@@ -1,5 +1,6 @@
 class EntriesController < ApplicationController
-
+before_action :require_login
+  
   def new
   end
 
@@ -12,5 +13,5 @@ class EntriesController < ApplicationController
     @entry.save
     redirect_to "/places/#{@entry["place_id"]}"
   end
-
+  
 end

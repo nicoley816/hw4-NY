@@ -1,13 +1,15 @@
 class UsersController < ApplicationController
   def new
+  @user = User.new
   end
 
   def create
     @user = User.new
     @user["username"] = params["username"]
     @user["email"] = params["email"]
-    @user["password"] = params["password"]
+    @user["password_digest"] = params["password"]
     @user.save
-    redirect_to "/"
+    flash[:notice] = "Thanks for signing up. Now login."
+    redirect_to "/login"
   end
 end
