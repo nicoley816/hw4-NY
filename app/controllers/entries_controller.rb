@@ -2,9 +2,12 @@ class EntriesController < ApplicationController
 before_action :require_login
   
   def new
+    @user = User.find_by({ "id" => session["user_id"] })
   end
 
   def create
+   @user = User.find_by({ "id" => session["user_id"] })
+  if @user != nil
     @entry = Entry.new
     @entry["title"] = params["title"]
     @entry["description"] = params["description"]
@@ -12,6 +15,7 @@ before_action :require_login
     @entry["place_id"] = params["place_id"]
     @entry.save
     redirect_to "/places/#{@entry["place_id"]}"
-  end
-  
+    else
+      flash["notice"] = "Login first."
+  end 
 end
