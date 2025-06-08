@@ -1,6 +1,12 @@
 <h1>New Place</h1>
 
-<form action="/places" method="post">
+<form action="/places" method="post" enctype="multipart/form-data">
+
+<div class="mb-3">
+  <label for="uploaded_image_input" class="form-label">Upload Image</label>
+  <input type="file" name="uploaded_image" id="uploaded_image_input" class="form-control" accept="image/png, image/jpg, image/jpeg, image/gif">
+</div>
+
   <p>
     <label for="name_input">Name</label>
     <input type="text" name="name" id="name_input">
